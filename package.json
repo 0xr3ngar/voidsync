@@ -1,7 +1,7 @@
 {
     "name": "voidsync",
-    "description": "A template repository for TypeScript projects using Bun runtime",
-    "version": "1.0.0",
+    "description": "Conquer the void of scattered playlists. Sync YouTube, Spotify, and SoundCloud to dominate the Rift and reign over the beats.",
+    "version": "0.0.1",
     "author": "0xr3ngar",
     "devDependencies": {
         "@biomejs/biome": "^2.2.5",
@@ -21,10 +21,18 @@
             "onFail": "error"
         }
     },
+    "bin": {
+        "voidsync": "dist/index.js"
+    },
     "keywords": [
-        "bun",
-        "template",
-        "typescript"
+        "voidsync",
+        "youtube",
+        "spotify",
+        "soundcloud",
+        "music",
+        "playlist",
+        "sync",
+        "migrate"
     ],
     "license": "MIT",
     "main": "dist/index.js",

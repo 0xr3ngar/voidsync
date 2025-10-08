@@ -1,0 +1,7 @@
+{
+    "$schema": "https://unpkg.com/knip@5/schema.json",
+    "project": ["src/**/*.ts"],
+    "ignoreDependencies": ["bun-types"],
+    "ignoreExportsUsedInFile": true,
+    "ignore": ["src/utils/array.ts", "src/utils/object.ts"]
+}

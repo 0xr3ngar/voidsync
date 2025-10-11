@@ -53,5 +53,8 @@
         "test:watch": "bun test --watch",
         "typecheck": "tsc --noEmit"
     },
-    "type": "module"
+    "type": "module",
+    "dependencies": {
+        "react": "^19.2.0"
+    }
 }

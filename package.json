@@ -56,7 +56,6 @@
     },
     "type": "module",
     "dependencies": {
-        "chalk": "^5.6.2",
         "ink": "^6.3.1",
         "ink-big-text": "^2.0.0",
         "ink-gradient": "^3.0.0",

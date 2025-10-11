@@ -1,7 +1,8 @@
 {
     "$schema": "https://unpkg.com/knip@5/schema.json",
-    "project": ["src/**/*.ts"],
-    "ignoreDependencies": ["bun-types"],
+    "project": ["src/**/*.ts", "src/**/*.tsx"],
+    "ignoreDependencies": ["bun-types", "ink-link", "ink-spinner"],
+    "ignoreBinaries": ["voidsync"],
     "ignoreExportsUsedInFile": true,
-    "ignore": ["src/utils/array.ts", "src/utils/object.ts"]
+    "ignore": ["src/utils/array.ts", "src/utils/object.ts", "src/config.ts"]
 }

@@ -41,21 +41,20 @@
         "biome:check": "biome check --write ./src/",
         "biome:format": "biome format --write ./src/",
         "biome:lint": "biome lint --write ./src/",
-        "build": "bun build src/index.ts --outdir dist --target bun",
+        "build": "bun build src/index.tsx --outdir dist --target bun",
         "check": "bun run typecheck && bun run biome:check && bun run knip",
         "deps:check": "syncpack update --check",
         "deps:format": "syncpack format",
         "deps:update": "syncpack update && bun install",
-        "dev": "bun run --watch src/index.ts",
+        "dev": "bun run --watch src/index.tsx",
         "knip": "knip",
-        "start": "bun run src/index.ts",
+        "start": "bun run src/index.tsx",
         "test": "bun test",
         "test:watch": "bun test --watch",
         "typecheck": "tsc --noEmit"
     },
     "type": "module",
     "dependencies": {
-        "@babel/preset-react": "^7.27.1",
         "ink": "^6.3.1",
         "react": "^19.2.0"
     }

@@ -28,7 +28,7 @@ export const Intro = ({ onComplete }: IntroProps) => {
         },
         {
             name: "VoidSync",
-            gradient: ["#8B00FF", "#FF00FF", "#00D9FF"],
+            gradient: "vice" as const,
             tagline: "Why choose?",
         },
     ];
@@ -56,12 +56,17 @@ export const Intro = ({ onComplete }: IntroProps) => {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [platforms.length]);
 
     const current = assertDefined(
         platforms[currentIndex],
         "Current platform is undefined",
     );
+
+    const gradientProps =
+        current.gradient === "vice"
+            ? { name: current.gradient }
+            : { colors: current.gradient };
 
     return (
         <Box
@@ -71,7 +76,7 @@ export const Intro = ({ onComplete }: IntroProps) => {
             width="100%"
             height="100%"
         >
-            <Gradient colors={current.gradient}>
+            <Gradient {...gradientProps}>
                 <BigText text={current.name} />
             </Gradient>
             <Box justifyContent="center" alignItems="center" marginTop={1}>

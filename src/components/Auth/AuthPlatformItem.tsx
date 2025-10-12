@@ -1,16 +1,15 @@
 import { Box, Text } from "ink";
+import type { TextPart } from "@/models/Platform";
 
 interface AuthPlatformItemProps {
     isSelected: boolean;
-    name: string;
     isConnected: boolean;
-    color: string;
+    textParts: TextPart[];
 }
 export const AuthPlatformItem = ({
     isSelected,
-    name,
     isConnected,
-    color,
+    textParts,
 }: AuthPlatformItemProps) => {
     return (
         <Box gap={2}>
@@ -19,12 +18,15 @@ export const AuthPlatformItem = ({
             </Text>
 
             <Box width={15}>
-                <Text
-                    bold={isSelected}
-                    color={isSelected ? color : undefined}
-                    dimColor={!isSelected}
-                >
-                    {name}
+                <Text bold={isSelected}>
+                    {textParts.map((part) => (
+                        <Text
+                            key={part.text}
+                            color={isSelected ? part.color : "dim"}
+                        >
+                            {part.text}
+                        </Text>
+                    ))}
                 </Text>
             </Box>
 

@@ -79,7 +79,7 @@ export const Intro = ({ onComplete }: IntroProps) => {
             <Gradient {...gradientProps}>
                 <BigText text={current.name} />
             </Gradient>
-            <Box justifyContent="center" alignItems="center" marginTop={1}>
+            <Box justifyContent="center" alignItems="center">
                 <Text bold color="cyan">
                     {current.tagline}
                 </Text>

@@ -13,9 +13,8 @@ export const AuthBody = ({ platforms, selectedIndex }: AuthBodyProps) => {
                 <AuthPlatformItem
                     key={platform.name}
                     isSelected={selectedIndex === index}
-                    name={platform.name}
                     isConnected={platform.connected}
-                    color={platform.color}
+                    textParts={platform.textParts}
                 />
             ))}
         </Box>

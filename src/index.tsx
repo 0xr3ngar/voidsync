@@ -2,4 +2,8 @@
 import { render } from "ink";
 import { App } from "@/App.tsx";
 
-render(<App />);
+process.stdout.write("\x1Bc");
+
+render(<App />, {
+    exitOnCtrlC: true,
+});

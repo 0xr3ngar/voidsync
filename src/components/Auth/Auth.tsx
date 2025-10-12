@@ -14,9 +14,27 @@ export const Auth = ({ onComplete }: AuthProps) => {
     const { exit } = useApp();
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [platforms, setPlatforms] = useState<Platform[]>([
-        { name: "YouTube", connected: false, color: "#FF0000" },
-        { name: "Spotify", connected: false, color: "#1DB954" },
-        { name: "SoundCloud", connected: false, color: "#FF3300" },
+        {
+            name: "YouTube",
+            connected: false,
+            textParts: [
+                { text: "You", color: "#FF0000" },
+                { text: "Tube", color: "#FFF" },
+            ],
+        },
+        {
+            name: "Spotify",
+            connected: false,
+            textParts: [{ text: "Spotify", color: "#1DB954" }],
+        },
+        {
+            name: "SoundCloud",
+            connected: false,
+            textParts: [
+                { text: "Sound", color: "#FF3300" },
+                { text: "Cloud", color: "#FFFFFF" },
+            ],
+        },
     ]);
 
     useInput((input, key) => {

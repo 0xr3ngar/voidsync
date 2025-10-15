@@ -5,6 +5,7 @@ import { AuthFooter } from "@/components/Auth/AuthFooter";
 import { AuthHeader } from "@/components/Auth/AuthHeader";
 import type { Platform } from "@/models/Platform";
 import { handlePlatformConnect } from "@/services/handlePlatformConnect";
+import { hasValidTokens } from "@/services/youtube/store/tokenStorage";
 
 interface AuthProps {
     onComplete: () => void;
@@ -16,7 +17,7 @@ export const Auth = ({ onComplete }: AuthProps) => {
     const [platforms, setPlatforms] = useState<Platform[]>([
         {
             name: "YouTube",
-            connected: false,
+            connected: hasValidTokens(),
             textParts: [
                 { text: "You", color: "#FF0000" },
                 { text: "Tube", color: "#FFF" },
@@ -63,8 +64,11 @@ export const Auth = ({ onComplete }: AuthProps) => {
                 platform: selectedPlatform,
                 onConnect: (isConnected) => {
                     setPlatforms((prev) => {
-                        selectedPlatform.connected = isConnected;
-                        return [...prev, selectedPlatform];
+                        return prev.map((p, idx) =>
+                            idx === selectedIndex
+                                ? { ...p, connected: isConnected }
+                                : p,
+                        );
                     });
                 },
             });

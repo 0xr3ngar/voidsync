@@ -8,21 +8,26 @@ interface HandlePlatformConnectProps {
     platform: Platform;
     onConnect: (isConnected: boolean) => void;
 }
-export const handlePlatformConnect = ({
+export const handlePlatformConnect = async ({
     platform,
     onConnect,
 }: HandlePlatformConnectProps) => {
-    switch (platform.name) {
-        case "YouTube":
-            handleYouTubeConnect(platform, onConnect);
-            break;
-        case "Spotify":
-            handleSpotifyConnect(platform, onConnect);
-            break;
-        case "SoundCloud":
-            handleSoundCloudConnect(platform, onConnect);
-            break;
-        default:
-            assert(false, `Unsupported platform: ${platform.name}`);
+    try {
+        switch (platform.name) {
+            case "YouTube":
+                await handleYouTubeConnect(onConnect);
+                break;
+            case "Spotify":
+                await handleSpotifyConnect(platform, onConnect);
+                break;
+            case "SoundCloud":
+                await handleSoundCloudConnect(platform, onConnect);
+                break;
+            default:
+                assert(false, `Unsupported platform: ${platform.name}`);
+        }
+    } catch (error) {
+        console.error(`Error connecting to ${platform.name}:`, error);
+        onConnect(false);
     }
 };

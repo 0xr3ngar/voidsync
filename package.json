@@ -42,7 +42,7 @@
         "biome:check": "biome check --write ./src/",
         "biome:format": "biome format --write ./src/",
         "biome:lint": "biome lint --write ./src/",
-        "build": "bun build src/index.tsx --outdir dist --target bun --external ink --external ink-big-text --external ink-gradient --external ink-link --external ink-spinner --external react --external chalk",
+        "build": "bun build src/index.tsx --outdir dist --target bun --external ink --external ink-big-text --external ink-gradient --external ink-link --external ink-spinner --external ink-text-input --external react --external conf --external googleapis --external google-auth-library",
         "check": "bun run typecheck && bun run biome:check && bun run knip",
         "deps:check": "syncpack update --check",
         "deps:format": "syncpack format",
@@ -58,11 +58,14 @@
     "type": "module",
     "dependencies": {
         "conf": "^15.0.2",
+        "google-auth-library": "^10.4.0",
+        "googleapis": "^162.0.0",
         "ink": "^6.3.1",
         "ink-big-text": "^2.0.0",
         "ink-gradient": "^3.0.0",
         "ink-link": "^5.0.0",
         "ink-spinner": "^5.0.0",
+        "ink-text-input": "^6.0.0",
         "react": "^19.2.0"
     }
 }

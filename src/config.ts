@@ -8,9 +8,11 @@ export const config = {
     isDevelopment: process.env.NODE_ENV !== "production",
     isProduction: process.env.NODE_ENV === "production",
 
-    // Add your environment variables here
-    // Example with assertDefined:
-    // import { assertDefined } from "@/utils/assert";
-    // apiKey: assertDefined(process.env.API_KEY, "API_KEY"),
-    // apiUrl: process.env.API_URL || "https://api.example.com",
+    youtube: {
+        clientId: process.env.YOUTUBE_CLIENT_ID,
+        clientSecret: process.env.YOUTUBE_CLIENT_SECRET,
+        redirectUri:
+            process.env.YOUTUBE_REDIRECT_URI ||
+            "http://localhost:3000/callback",
+    },
 } as const;

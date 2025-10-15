@@ -16,10 +16,6 @@ export const getYouTubeTokens = (): YouTubeTokens | null => {
     return store.get(YOUTUBE_TOKENS_KEY) as YouTubeTokens | null;
 };
 
-export const deleteYouTubeTokens = (): void => {
-    store.delete(YOUTUBE_TOKENS_KEY);
-};
-
 export const hasValidTokens = (): boolean => {
     const tokens = getYouTubeTokens();
     if (!tokens) {

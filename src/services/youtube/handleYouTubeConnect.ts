@@ -1,7 +1,6 @@
 import { OAuth2Client } from "google-auth-library";
 import { config } from "@/config";
 import { waitForOAuthCallback } from "@/services/shared/oauthServer";
-import { createSuccessPage } from "@/services/youtube/pages/createSuccessPage";
 import {
     hasValidTokens,
     saveYouTubeTokens,

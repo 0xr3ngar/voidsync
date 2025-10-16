@@ -18,7 +18,7 @@ export const handlePlatformConnect = async ({
                 await handleYouTubeConnect(onConnect);
                 break;
             case "Spotify":
-                await handleSpotifyConnect(platform, onConnect);
+                await handleSpotifyConnect(onConnect);
                 break;
             case "SoundCloud":
                 await handleSoundCloudConnect(platform, onConnect);

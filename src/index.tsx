@@ -1,7 +1,10 @@
 #! /usr/bin/env bun
 import { render } from "ink";
 import { App } from "@/App.tsx";
-import { startGlobalOAuthServer } from "@/services/shared/oauthServer";
+import {
+    startGlobalOAuthServer,
+    stopGlobalOAuthServer,
+} from "@/services/shared/oauthServer";
 
 process.stdout.write("\x1Bc");
 
@@ -9,4 +12,9 @@ startGlobalOAuthServer();
 
 render(<App />, {
     exitOnCtrlC: true,
+});
+
+process.on("SIGINT", () => {
+    stopGlobalOAuthServer();
+    process.exit(0);
 });

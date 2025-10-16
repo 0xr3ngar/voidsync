@@ -7,15 +7,23 @@ interface YouTubeTokens {
     expiryDate: number;
 }
 
+interface SpotifyTokens {
+    accessToken: string;
+    refreshToken: string;
+    expiryDate: number;
+}
+
 export const store = new Conf<{
     hasSeenIntro: boolean;
     connectedPlatforms: Platform[];
     youtubeTokens: YouTubeTokens | null;
+    spotifyTokens: SpotifyTokens | null;
 }>({
     projectName: "voidsync",
     defaults: {
         hasSeenIntro: false,
         connectedPlatforms: [],
         youtubeTokens: null,
+        spotifyTokens: null,
     },
 });

@@ -9,6 +9,8 @@ export interface YouTubePlaylist {
     privacy: string;
 }
 
+// TODO: Maybe use unofficial API for this too?
+// but how would we know if the playlist belongs to the user?
 export const fetchYouTubePlaylists = async (): Promise<YouTubePlaylist[]> => {
     const tokens = getYouTubeTokens();
 

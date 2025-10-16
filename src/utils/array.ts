@@ -2,6 +2,10 @@ export function unique<T>(array: T[]): T[] {
     return [...new Set(array)];
 }
 
+export function uniqueBy<T>(array: T[], key: keyof T): T[] {
+    return [...new Map(array.map((item) => [item[key], item])).values()];
+}
+
 export function compact<T>(array: (T | null | undefined)[]): T[] {
     return array.filter((item): item is T => item != null);
 }

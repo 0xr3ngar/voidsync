@@ -1,10 +1,11 @@
-import { Box, useApp, useInput } from "ink";
+import { Box, useInput } from "ink";
 import { useState } from "react";
 import { AuthBody } from "@/components/Auth/AuthBody";
 import { AuthFooter } from "@/components/Auth/AuthFooter";
 import { AuthHeader } from "@/components/Auth/AuthHeader";
 import type { Platform } from "@/models/Platform";
 import { handlePlatformConnect } from "@/services/handlePlatformConnect";
+import { hasValidSpotifyTokens } from "@/services/spotify/store/tokenStorage";
 import { hasValidTokens } from "@/services/youtube/store/tokenStorage";
 
 interface AuthProps {
@@ -12,7 +13,6 @@ interface AuthProps {
 }
 
 export const Auth = ({ onComplete }: AuthProps) => {
-    const { exit } = useApp();
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [platforms, setPlatforms] = useState<Platform[]>([
         {
@@ -25,7 +25,7 @@ export const Auth = ({ onComplete }: AuthProps) => {
         },
         {
             name: "Spotify",
-            connected: false,
+            connected: hasValidSpotifyTokens(),
             textParts: [{ text: "Spotify", color: "#1DB954" }],
         },
         {
@@ -39,10 +39,6 @@ export const Auth = ({ onComplete }: AuthProps) => {
     ]);
 
     useInput((input, key) => {
-        if (input === "q") {
-            exit();
-        }
-
         if (key.upArrow) {
             setSelectedIndex((prev) => Math.max(0, prev - 1));
         }

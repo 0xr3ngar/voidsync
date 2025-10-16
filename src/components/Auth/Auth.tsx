@@ -7,6 +7,7 @@ import type { Platform } from "@/models/Platform";
 import { handlePlatformConnect } from "@/services/handlePlatformConnect";
 import { hasValidSpotifyTokens } from "@/services/spotify/store/tokenStorage";
 import { hasValidTokens } from "@/services/youtube/store/tokenStorage";
+import { store } from "@/store";
 
 interface AuthProps {
     onComplete: () => void;
@@ -59,6 +60,12 @@ export const Auth = ({ onComplete }: AuthProps) => {
             handlePlatformConnect({
                 platform: selectedPlatform,
                 onConnect: (isConnected) => {
+                    if (isConnected) {
+                        store.set("connectedPlatforms", [
+                            ...store.get("connectedPlatforms"),
+                            selectedPlatform,
+                        ]);
+                    }
                     setPlatforms((prev) => {
                         return prev.map((p, idx) =>
                             idx === selectedIndex
@@ -76,7 +83,13 @@ export const Auth = ({ onComplete }: AuthProps) => {
     });
 
     return (
-        <Box flexDirection="column" width="100%" height="100%" padding={2}>
+        <Box
+            flexDirection="column"
+            width="100%"
+            height="100%"
+            padding={2}
+            justifyContent="center"
+        >
             <AuthHeader />
             <AuthBody platforms={platforms} selectedIndex={selectedIndex} />
             <AuthFooter />

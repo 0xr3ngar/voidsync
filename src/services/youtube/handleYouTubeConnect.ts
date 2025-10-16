@@ -1,7 +1,11 @@
 import { OAuth2Client } from "google-auth-library";
 import { config } from "@/config";
-import { startOAuthServer } from "@/services/youtube/server/oauthServer";
-import { hasValidTokens } from "@/services/youtube/store/tokenStorage";
+import { waitForOAuthCallback } from "@/services/shared/oauthServer";
+import { createSuccessPage } from "@/services/youtube/pages/createSuccessPage";
+import {
+    hasValidTokens,
+    saveYouTubeTokens,
+} from "@/services/youtube/store/tokenStorage";
 
 const SCOPES = ["https://www.googleapis.com/auth/youtube"];
 
@@ -33,8 +37,6 @@ export const handleYouTubeConnect = async (
             prompt: "consent",
         });
 
-        const authPromise = startOAuthServer(oauth2Client);
-
         try {
             const proc = Bun.spawn(["open", authUrl]);
             await proc.exited;
@@ -42,8 +44,31 @@ export const handleYouTubeConnect = async (
             console.error(authUrl);
         }
 
-        const success = await authPromise;
-        onConnect(success);
+        const callbackData = await waitForOAuthCallback();
+
+        if (!callbackData) {
+            onConnect(false);
+            return;
+        }
+
+        const { tokens } = await oauth2Client.getToken(callbackData.code);
+
+        if (
+            !tokens.access_token ||
+            !tokens.refresh_token ||
+            !tokens.expiry_date
+        ) {
+            onConnect(false);
+            return;
+        }
+
+        saveYouTubeTokens({
+            accessToken: tokens.access_token,
+            refreshToken: tokens.refresh_token,
+            expiryDate: tokens.expiry_date,
+        });
+
+        onConnect(true);
     } catch (error) {
         console.error("✗ Error during YouTube authentication:", error);
         onConnect(false);

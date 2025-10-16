@@ -5,14 +5,19 @@ interface AuthPlatformItemProps {
     isSelected: boolean;
     isConnected: boolean;
     textParts: TextPart[];
+    name: string;
 }
 export const AuthPlatformItem = ({
     isSelected,
     isConnected,
     textParts,
+    name,
 }: AuthPlatformItemProps) => {
+    // TODO: Remove this once SoundCloud is implemented
+    const isWorkInProgress = name === "SoundCloud";
+
     return (
-        <Box gap={2}>
+        <Box gap={2} justifyContent="center">
             <Text color={isSelected ? "magenta" : "dim"}>
                 {isSelected ? "❯" : " "}
             </Text>
@@ -33,6 +38,8 @@ export const AuthPlatformItem = ({
             <Box>
                 {isConnected ? (
                     <Text color="green">✓ Connected</Text>
+                ) : isWorkInProgress ? (
+                    <Text color="yellow">⚠ Work in progress...</Text>
                 ) : (
                     <Text dimColor>Not connected</Text>
                 )}

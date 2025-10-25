@@ -1,14 +1,34 @@
-import { fetchTracksFromPlaylist } from "@/services/spotify/fetchTracksFromPlaylist";
-import { syncTracksToYouTube } from "@/services/youtube/syncTracksToYouTube";
+import {
+    fetchTracksFromPlaylist,
+    type SpotifyPlaylistTracksResponse,
+} from "@/services/spotify/fetchTracksFromPlaylist";
+import {
+    type SyncProgress,
+    syncTracksToYouTube,
+} from "@/services/youtube/syncTracksToYouTube";
 
-export const handlePlaylistSync = async (
-    spotifyPlaylistIds: string[],
-    youtubePlaylistIds: string[],
-) => {
+interface HandlePlaylistSyncProps {
+    onFetchProgress?: (playlist: SpotifyPlaylistTracksResponse) => void;
+    onProgress?: (progress: SyncProgress) => void;
+    onPlaylistCreated?: (playlistId: string) => void;
+    spotifyPlaylistIds: string[];
+    youtubePlaylistIds: string[];
+}
+
+export const handlePlaylistSync = async ({
+    spotifyPlaylistIds,
+    youtubePlaylistIds: _youtubePlaylistIds,
+    onFetchProgress,
+    onProgress,
+    onPlaylistCreated,
+}: HandlePlaylistSyncProps) => {
     try {
         const allTracksFromSpotify = await Promise.all(
             spotifyPlaylistIds.map((playlistId) =>
-                fetchTracksFromPlaylist(playlistId),
+                fetchTracksFromPlaylist(playlistId).then((playlist) => {
+                    onFetchProgress?.(playlist);
+                    return playlist;
+                }),
             ),
         ).then((playlists) =>
             playlists.flatMap((playlist) =>
@@ -22,8 +42,8 @@ export const handlePlaylistSync = async (
                 }),
             ),
         );
-        // TODO: Add youtube playlist syncs
 
+        // TODO: Add youtube playlist syncs
         const allTracks = [...allTracksFromSpotify];
 
         const playlistName = `VoidSync - ${new Date().toLocaleDateString()}`;
@@ -31,9 +51,8 @@ export const handlePlaylistSync = async (
         const result = await syncTracksToYouTube(
             allTracks,
             playlistName,
-            (progress) => {
-                // TODO: Update progress
-            },
+            onProgress,
+            onPlaylistCreated,
         );
 
         return {

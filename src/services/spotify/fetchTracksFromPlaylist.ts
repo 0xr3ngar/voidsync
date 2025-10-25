@@ -84,7 +84,7 @@ interface SpotifyPlaylistTrackItem {
     };
 }
 
-interface SpotifyPlaylistTracksResponse {
+export interface SpotifyPlaylistTracksResponse {
     href: string;
     items: SpotifyPlaylistTrackItem[];
     limit: number;

@@ -3,7 +3,9 @@
 
 # VoidSync
 
-**Conquer the void of scattered playlists. Sync YouTube, Spotify, and SoundCloud into one unified collection.**
+**Conquer the void of scattered playlists. Migrate your music library seamlessly.**
+
+> ⚠️ **Currently supports:** Spotify → YouTube Music migration only. More platforms coming soon!
 
 <p>
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.9-blue?style=for-the-badge&logo=typescript"/>
@@ -22,7 +24,13 @@
 
 ---
 
-VoidSync is a terminal-based CLI tool that liberates your music from platform silos. Connect your Spotify, YouTube, and SoundCloud accounts, select your favorite playlists, and watch them seamlessly sync to YouTube Music—all from the comfort of your terminal.
+VoidSync is a terminal-based CLI tool that liberates your music from platform silos. Connect your Spotify and YouTube accounts, select your favorite playlists, and watch them seamlessly migrate to YouTube Music—all from the comfort of your terminal.
+
+**Current Features:**
+- ✅ Migrate playlists from Spotify to YouTube Music
+- ✅ Automatic track matching and search
+- ✅ Real-time progress tracking
+- ✅ Beautiful terminal UI
 
 No more manually recreating playlists. No more switching between apps. Just pure, void-crushing synchronization.
 
@@ -93,13 +101,16 @@ voidsync
 ### How It Works
 
 1. **Intro Animation** - Watch the void-conquering journey unfold
-2. **Platform Authentication** - Connect your accounts via OAuth
+2. **Platform Authentication** - Connect your Spotify and YouTube accounts via OAuth
    - Use `↑` and `↓` arrow keys to navigate
    - Press `SPACE` to authenticate a platform
-   - Press `ENTER` to continue once authenticated
-3. **Playlist Selection** - Choose which playlists to sync
-   - Navigate and select playlists from connected platforms
-4. **Sync Magic** - Watch your playlists migrate to YouTube Music
+   - Press `ENTER` to continue once both platforms are authenticated
+3. **Playlist Selection** - Choose which Spotify playlists to migrate
+   - Navigate through your Spotify playlists
+   - Select the ones you want to sync to YouTube Music
+4. **Migration Progress** - Watch your playlists migrate to YouTube Music in real-time
+   - See each track being searched and added
+   - Get a clickable link to your new YouTube Music playlist when complete
 
 ## Development
 
@@ -122,14 +133,20 @@ bun run build
 
 ## 🗺️ Roadmap
 
+**Completed:**
 - [x] Spotify authentication and playlist fetching
 - [x] YouTube authentication and playlist creation
-- [x] Basic playlist syncing (Spotify → YouTube)
+- [x] Playlist migration (Spotify → YouTube Music)
+- [x] Real-time progress tracking with current track display
+- [x] Direct playlist link on completion
+
+**Coming Soon:**
 - [ ] SoundCloud support
+- [ ] Reverse migration (YouTube Music → Spotify)
 - [ ] Bi-directional sync
 - [ ] Playlist updates and incremental syncing
-- [ ] Progress tracking UI improvements
 - [ ] Sync history and rollback
+- [ ] Multiple playlist formats (Apple Music, etc.)
 
 ## Issues & Contributions
 

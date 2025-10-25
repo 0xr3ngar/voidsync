@@ -21,6 +21,7 @@ export const syncTracksToYouTube = async (
     tracks: string[],
     playlistName: string,
     onProgress?: (progress: SyncProgress) => void,
+    onPlaylistCreated?: (playlistId: string) => void,
 ): Promise<SyncResult> => {
     const videoResults: Array<{ track: string; videoId: string | null }> = [];
 
@@ -54,6 +55,8 @@ export const syncTracksToYouTube = async (
         playlistName,
         `Synced from Spotify - ${foundVideos.length}/${tracks.length} tracks found`,
     );
+
+    onPlaylistCreated?.(playlistId);
 
     let successful = 0;
     let failed = 0;

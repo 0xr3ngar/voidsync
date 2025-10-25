@@ -34,6 +34,13 @@ VoidSync is a terminal-based CLI tool that liberates your music from platform si
 
 No more manually recreating playlists. No more switching between apps. Just pure, void-crushing synchronization.
 
+## 🎵 Example Playlists
+
+Check out these playlists migrated using VoidSync:
+
+- [**Example Playlist 1**](https://music.youtube.com/playlist?list=PLxprpQv87I-aFx43Z2L5DHV2EvUUE3xTm) - Synced from Spotify to YouTube Music
+- [**Example Playlist 2**](https://music.youtube.com/playlist?list=PLxprpQv87I-YjlAb4sbINUbghv-ZkCloj) - Synced from Spotify to YouTube Music
+
 ## Prerequisites
 
 Before installing VoidSync, you'll need to set up API credentials for the platforms you want to sync:

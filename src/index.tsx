@@ -10,11 +10,18 @@ process.stdout.write("\x1Bc");
 
 startGlobalOAuthServer();
 
-render(<App />, {
+const instance = render(<App />, {
     exitOnCtrlC: true,
 });
 
 process.on("SIGINT", () => {
     stopGlobalOAuthServer();
+    instance.unmount();
+    process.exit(0);
+});
+
+instance.waitUntilExit().then(async () => {
+    stopGlobalOAuthServer();
+    process.stdout.write("\x1Bc");
     process.exit(0);
 });
